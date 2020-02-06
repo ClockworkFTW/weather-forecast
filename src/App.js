@@ -1,26 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Search from "./components/Search";
+import View from "./components/View";
+
+const App = () => {
+	const [data, setData] = useState(null);
+	console.log(data);
+	return (
+		<div>
+			<h1>Weather App</h1>
+			<Search setData={setData} />
+			<View data={data} />
+		</div>
+	);
+};
 
 export default App;
