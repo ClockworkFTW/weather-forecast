@@ -1,17 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import darkskyServices from "./services/darksky";
 
-import Search from "./components/Search";
-import View from "./components/View";
+import geocode from "./services/geocode";
+
+import { GlobalStyle } from "./components/common";
+import Header from "./components/Header";
+import Main from "./components/Main";
+import Error from "./components/Error";
+import Loader from "./components/Loader";
 
 const App = () => {
 	const [data, setData] = useState(null);
-	console.log(data);
-	return (
-		<div>
-			<h1>Weather App</h1>
-			<Search setData={setData} />
-			<View data={data} />
-		</div>
+	const [error, setError] = useState(null);
+
+	useEffect(() => {
+		const success = async pos => {
+			const coords = `${pos.coords.latitude},${pos.coords.longitude}`;
+			const location = await geocode.getLocation(coords);
+			const forecast = await darkskyServices.getForecast(coords);
+			setData({ ...forecast, location });
+		};
+
+		const error = err => setError(error);
+
+		navigator.geolocation.getCurrentPosition(success, error);
+	}, []);
+
+	return data ? (
+		!error ? (
+			<div>
+				<GlobalStyle />
+				<Header location={data.location} setData={setData} />
+				<Main data={data} />
+			</div>
+		) : (
+			<Error error={error} />
+		)
+	) : (
+		<Loader />
 	);
 };
 

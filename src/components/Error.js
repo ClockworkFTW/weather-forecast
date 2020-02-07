@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const Loader = () => (
+const Error = ({ error }) => (
 	<Wrapper>
 		<Container>
-			<h1>Loading...</h1>
+			<h1>Something went wrong...</h1>;
 		</Container>
 	</Wrapper>
 );
@@ -20,4 +20,4 @@ const Container = styled.div`
 	text-align: center;
 `;
 
-export default Loader;
+export default Error;
