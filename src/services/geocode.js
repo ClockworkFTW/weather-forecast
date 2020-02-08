@@ -7,17 +7,12 @@ const getLocation = async latlng => {
 	const result = await axios.get(URL, {
 		params: { latlng, result_type: "locality", key: KEY }
 	});
-
-	if (result.data.status === "OK") {
-		return result.data.results[0].formatted_address;
-	} else {
-		return "Address not found";
-	}
+	return result.data;
 };
 
 const getCoords = async address => {
 	const result = await axios.get(URL, {
-		params: { address, key: KEY }
+		params: { address, result_type: "locality", key: KEY }
 	});
 	return result.data;
 };

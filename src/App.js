@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import darkskyServices from "./services/darksky";
 
-import geocode from "./services/geocode";
+import { fetchLocalData } from "./util";
+import { localStorageName } from "./config";
 
 import { GlobalStyle } from "./components/common";
 import Header from "./components/Header";
 import Main from "./components/Main";
-import Error from "./components/Error";
 import Loader from "./components/Loader";
 
 const App = () => {
@@ -14,28 +13,35 @@ const App = () => {
 	const [error, setError] = useState(null);
 
 	useEffect(() => {
-		const success = async pos => {
-			const coords = `${pos.coords.latitude},${pos.coords.longitude}`;
-			const location = await geocode.getLocation(coords);
-			const forecast = await darkskyServices.getForecast(coords);
-			setData({ ...forecast, location });
+		const fetchData = async () => {
+			const cachedData = window.localStorage.getItem(localStorageName);
+			// If cached data exists, set state
+			if (cachedData) {
+				setData(JSON.parse(cachedData));
+			}
+			// Else fetch from API
+			else {
+				const fetchedData = await fetchLocalData();
+				window.localStorage.setItem(
+					localStorageName,
+					JSON.stringify(fetchedData)
+				);
+				setData(fetchedData);
+			}
 		};
-
-		const error = err => setError(error);
-
-		navigator.geolocation.getCurrentPosition(success, error);
+		fetchData();
 	}, []);
 
 	return data ? (
-		!error ? (
-			<div>
-				<GlobalStyle />
-				<Header location={data.location} setData={setData} />
-				<Main data={data} />
-			</div>
-		) : (
-			<Error error={error} />
-		)
+		<div>
+			<GlobalStyle />
+			<Header
+				location={data.location}
+				setData={setData}
+				setError={setError}
+			/>
+			<Main data={data} error={error} />
+		</div>
 	) : (
 		<Loader />
 	);

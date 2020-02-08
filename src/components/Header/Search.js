@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 
-import darkskyServices from "../../services/darksky";
+import { fetchSearchData } from "../../util";
 
-const Search = ({ location, setData }) => {
+const Search = ({ location, setData, setError }) => {
 	const [term, setTerm] = useState(location);
 
 	const handleSearch = async () => {
-		const data = await darkskyServices.getForecast("14.5995,120.9842");
-		setData(data);
+		try {
+			const data = await fetchSearchData(term);
+			setTerm(data.location);
+			setData(data);
+		} catch (error) {
+			setError(error);
+		}
 	};
 
 	return (
