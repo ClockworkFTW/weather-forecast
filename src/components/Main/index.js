@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import Current from "./Current";
 import Chart from "./Chart";
-import Week from "./Week";
+import Time from "./Time";
 import Error from "./Error";
 
 const Main = ({ data, error }) =>
@@ -14,7 +14,7 @@ const Main = ({ data, error }) =>
 				dayData={data.daily.data[0]}
 			/>
 			{/* <Chart data={data.hourly.data} /> */}
-			<Week data={data.daily.data} />
+			<Time data={data.hourly.data} />
 		</Container>
 	) : (
 		<Error error={error} />

@@ -33,7 +33,7 @@ const App = () => {
 	}, []);
 
 	return data ? (
-		<div>
+		<>
 			<GlobalStyle />
 			<Header
 				location={data.location}
@@ -41,7 +41,7 @@ const App = () => {
 				setError={setError}
 			/>
 			<Main data={data} error={error} />
-		</div>
+		</>
 	) : (
 		<Loader />
 	);

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "reset-css";
-import "./assets/icons/css/weather-icons.min.css";
+import "./assets/icons/css/weather-icons.css";
 
 import App from "./App";
 
