@@ -1,10 +1,16 @@
 import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-  body {
-	font-family: 'Roboto', sans-serif;
-	font-size: 16px;
-  }
+	html {
+		box-sizing: border-box;
+	}
+	*, *:before, *:after {
+		box-sizing: inherit;
+	}
+	body {
+		font-family: 'Roboto', sans-serif;
+		font-size: 16px;
+	}
 `;
 
 export const Temp = styled.h1`

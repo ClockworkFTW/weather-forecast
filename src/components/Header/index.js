@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import Search from "./Search";
 
-const Header = ({ location, setData, setError }) => (
-	<Wrapper>
-		<Container>
-			<Search location={location} setData={setData} setError={setError} />
-		</Container>
-	</Wrapper>
-);
+const Header = ({ setHeaderHeight, location, setData, setError }) => {
+	const headerRef = useRef(null);
+
+	useEffect(() => {
+		setHeaderHeight(headerRef.current.offsetHeight);
+	}, []);
+
+	return (
+		<Wrapper ref={headerRef}>
+			<Container>
+				<Search
+					location={location}
+					setData={setData}
+					setError={setError}
+				/>
+			</Container>
+		</Wrapper>
+	);
+};
 
 const Wrapper = styled.div`
 	z-index: 100;

@@ -3,34 +3,44 @@ import styled from "styled-components";
 
 import { Temp, WeatherIcon } from "../../common";
 
-const Header = ({ currentTemp, highTemp, lowTemp, apparentTemp, summary }) => (
+const Header = ({
+	currentTemp,
+	weatherIcon,
+	highTemp,
+	lowTemp,
+	apparentTemp,
+	summary
+}) => (
 	<Container>
 		<Row>
 			<Temp>{currentTemp}&deg;</Temp>
-			<WeatherIcon className="wi wi-day-cloudy" />
+			<WeatherIcon className={weatherIcon} />
 		</Row>
 		<Row>
-			<div>
-				<h3>
-					{summary}{" "}
-					<span>
-						{highTemp}&deg; / {lowTemp}&deg;
-					</span>
-				</h3>
-			</div>
-			<div>
-				<h3>Feels like {apparentTemp}&deg;</h3>
-			</div>
+			<Info>
+				{summary}{" "}
+				<span>
+					{highTemp}&deg;/{lowTemp}&deg;
+				</span>
+			</Info>
+			<Info>Feels like {apparentTemp}&deg;</Info>
 		</Row>
 	</Container>
 );
 
-const Container = styled.div``;
+const Container = styled.div`
+	margin-bottom: 30px;
+`;
 
 const Row = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+`;
+
+const Info = styled.h4`
+	font-size: 0.875rem;
+	color: #718096;
 `;
 
 export default Header;

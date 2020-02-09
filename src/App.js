@@ -9,6 +9,7 @@ import Main from "./components/Main";
 import Loader from "./components/Loader";
 
 const App = () => {
+	const [headerHeight, setHeaderHeight] = useState(null);
 	const [data, setData] = useState(null);
 	const [error, setError] = useState(null);
 
@@ -36,11 +37,12 @@ const App = () => {
 		<>
 			<GlobalStyle />
 			<Header
+				setHeaderHeight={setHeaderHeight}
 				location={data.location}
 				setData={setData}
 				setError={setError}
 			/>
-			<Main data={data} error={error} />
+			<Main headerHeight={headerHeight} data={data} error={error} />
 		</>
 	) : (
 		<Loader />

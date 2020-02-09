@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import Current from "./Current";
@@ -6,23 +6,33 @@ import Chart from "./Chart";
 import Time from "./Time";
 import Error from "./Error";
 
-const Main = ({ data, error }) =>
-	!error ? (
-		<Container>
+const Main = ({ headerHeight, data, error }) => {
+	const [focusTime, setFocusTime] = useState(data.currently.time);
+	return !error ? (
+		<Container headerHeight={headerHeight}>
 			<Current
-				currentData={data.currently}
+				focusTime={focusTime}
+				data={data}
 				dayData={data.daily.data[0]}
 			/>
-			{/* <Chart data={data.hourly.data} /> */}
-			<Time data={data.hourly.data} />
+			<Chart width="100%" height={200} data={data.hourly.data} />
+			<Time
+				focusTime={focusTime}
+				setFocusTime={setFocusTime}
+				data={data}
+			/>
 		</Container>
 	) : (
 		<Error error={error} />
 	);
+};
 
 const Container = styled.div`
-	margin-top: 45px;
-	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100vh;
+	padding: ${props => `${props.headerHeight + 30}px 20px 30px 20px`};
 	background: #faf9fa;
 `;
 
