@@ -14,7 +14,7 @@ const Chart = ({ width, height, data }) => {
 		return { x, y };
 	});
 
-	chartData.length = 24;
+	chartData.length = 25;
 
 	return (
 		<Container>

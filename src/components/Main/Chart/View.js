@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import {
 	ResponsiveContainer,
 	AreaChart,
@@ -22,12 +23,11 @@ const View = ({ width, height, data }) => (
 			</defs>
 			<XAxis
 				dataKey="x"
-				// padding={{ left: 10 }}
 				interval={3}
 				tickLine={false}
 				axisLine={false}
 				fontSize="14px"
-				fill="#718096"
+				stroke="#A0AEC0"
 			/>
 			<YAxis
 				dataKey="y"
@@ -42,17 +42,34 @@ const View = ({ width, height, data }) => (
 				fillOpacity={1}
 				fill="url(#colorY)"
 			>
-				<LabelList
-					dataKey="y"
-					position="top"
-					offset={10}
-					formatter={y => Math.round(y)}
-					fontSize="14px"
-					fill="#718096"
-				/>
+				<LabelList dataKey="y" content={renderCustomizedLabel} />
 			</Area>
 		</AreaChart>
 	</ResponsiveContainer>
 );
+
+const renderCustomizedLabel = ({ x, y, value }) => (
+	<G>
+		<text
+			x={x}
+			y={y - 15}
+			fontSize="14px"
+			fill="#A0AEC0"
+			position="top"
+			offset={10}
+			textAnchor="middle"
+			dominantBaseline="middle"
+		>
+			{Math.round(value)}
+		</text>
+	</G>
+);
+
+const G = styled.g`
+	display: none;
+	:nth-child(4n + 1) {
+		display: inherit;
+	}
+`;
 
 export default View;
