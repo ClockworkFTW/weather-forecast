@@ -10,11 +10,11 @@ const Chart = ({ width, height, data }) => {
 
 	const chartData = data.map(e => {
 		const y = e[prop];
-		const x = moment.unix(e.time).format("HH:mm");
+		const x = moment.unix(e.time).format("hA");
 		return { x, y };
 	});
 
-	chartData.length = 12;
+	chartData.length = 24;
 
 	return (
 		<Container>
@@ -25,7 +25,8 @@ const Chart = ({ width, height, data }) => {
 };
 
 const Container = styled.div`
-	padding: 10px;
+	margin: 20px 0;
+	padding: 10px 5px;
 	border-radius: 4px;
 	background: #ffffff;
 	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),

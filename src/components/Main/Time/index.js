@@ -1,27 +1,37 @@
 import React from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
 import moment from "moment";
 
+import { setPeriod } from "../../../reducers/period";
 import Period from "./Period";
 
-const Week = ({ focusTime, setFocusTime, data }) => {
+const Week = ({ data, activePeriod, setPeriod }) => {
 	const today = [data.currently, ...data.hourly.data];
-	today.length = 12;
+	today.length = 24;
+	const headerDate = moment
+		.unix(today[activePeriod].time)
+		.format("dddd - DD MMM");
+
 	return (
-		<Container>
-			<h1>{moment.unix(focusTime).format("dddd - DD MMM")}</h1>
-			{today.map((period, index) => (
-				<Period
-					key={period.time}
-					focusTime={focusTime}
-					setFocusTime={setFocusTime}
-					data={period}
-					index={index}
-				/>
-			))}
-		</Container>
+		<Wrapper>
+			<h1>{headerDate}</h1>
+			<Container>
+				{today.map((period, index) => (
+					<Period
+						key={period.time}
+						data={period}
+						activePeriod={activePeriod}
+						setPeriod={setPeriod}
+						index={index}
+					/>
+				))}
+			</Container>
+		</Wrapper>
 	);
 };
+
+const Wrapper = styled.div``;
 
 const Container = styled.div`
 	overflow-x: scroll;
@@ -29,4 +39,6 @@ const Container = styled.div`
 	white-space: nowrap;
 `;
 
-export default Week;
+const mapStateToProps = state => ({ activePeriod: state.period });
+
+export default connect(mapStateToProps, { setPeriod })(Week);

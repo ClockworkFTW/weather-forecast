@@ -10,14 +10,25 @@ import {
 
 const View = ({ width, height, data }) => (
 	<ResponsiveContainer width={width} height={height}>
-		<AreaChart data={data}>
+		<AreaChart
+			data={data}
+			margin={{ top: 20, right: 20, bottom: 5, left: 20 }}
+		>
 			<defs>
 				<linearGradient id="colorY" x1="0" y1="0" x2="0" y2="1">
 					<stop offset="5%" stopColor="#f8af0a" stopOpacity={0.8} />
 					<stop offset="95%" stopColor="#f8af0a" stopOpacity={0} />
 				</linearGradient>
 			</defs>
-			<XAxis dataKey="x" />
+			<XAxis
+				dataKey="x"
+				// padding={{ left: 10 }}
+				interval={3}
+				tickLine={false}
+				axisLine={false}
+				fontSize="14px"
+				fill="#718096"
+			/>
 			<YAxis
 				dataKey="y"
 				type="number"
@@ -31,7 +42,14 @@ const View = ({ width, height, data }) => (
 				fillOpacity={1}
 				fill="url(#colorY)"
 			>
-				<LabelList dataKey="y" position="top" />
+				<LabelList
+					dataKey="y"
+					position="top"
+					offset={10}
+					formatter={y => Math.round(y)}
+					fontSize="14px"
+					fill="#718096"
+				/>
 			</Area>
 		</AreaChart>
 	</ResponsiveContainer>

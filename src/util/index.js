@@ -2,7 +2,7 @@ import darkskyServices from "../services/darksky";
 import geocodeServices from "../services/geocode";
 
 // Fetch forecast based on user location
-export const fetchLocalData = async () => {
+export const fetchLocalForecast = async () => {
 	const getPosition = () => {
 		return new Promise((resolve, reject) => {
 			navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -23,7 +23,7 @@ export const fetchLocalData = async () => {
 };
 
 // Fetch forecast base on search term
-export const fetchSearchData = async term => {
+export const fetchSearchForecast = async term => {
 	const position = await geocodeServices.getCoords(term);
 
 	if (position.status === "OK") {

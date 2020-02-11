@@ -6,8 +6,8 @@ import { Temp, WeatherIcon } from "../../common";
 const Header = ({
 	currentTemp,
 	weatherIcon,
-	highTemp,
 	lowTemp,
+	highTemp,
 	apparentTemp,
 	summary
 }) => (
@@ -20,7 +20,7 @@ const Header = ({
 			<Info>
 				{summary}{" "}
 				<span>
-					{highTemp}&deg;/{lowTemp}&deg;
+					{lowTemp}&deg;/{highTemp}&deg;
 				</span>
 			</Info>
 			<Info>Feels like {apparentTemp}&deg;</Info>
@@ -39,6 +39,7 @@ const Row = styled.div`
 `;
 
 const Info = styled.h4`
+	margin-top: 1.25rem;
 	font-size: 0.875rem;
 	color: #718096;
 `;

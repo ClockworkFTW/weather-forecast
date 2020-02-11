@@ -4,14 +4,14 @@ import moment from "moment";
 
 import { TimeIcon } from "../../common";
 
-const Day = ({ focusTime, setFocusTime, data, index }) => {
+const Day = ({ data, activePeriod, setPeriod, index }) => {
 	const time = index === 0 ? "NOW" : moment.unix(data.time).format("HH:mm");
 	const icon = `wi wi-${data.icon}`;
 	const temp = Math.round(data.temperature);
 	return (
 		<Container
-			active={focusTime === data.time}
-			onClick={() => setFocusTime(data.time)}
+			active={activePeriod === index}
+			onClick={() => setPeriod(index)}
 		>
 			<h3>{time}</h3>
 			<TimeIcon className={icon} />
@@ -23,7 +23,7 @@ const Day = ({ focusTime, setFocusTime, data, index }) => {
 const Container = styled.div`
 	display: inline-block;
 	margin: 10px 0px;
-	padding: 10px;
+	padding: 14px;
 	border-radius: 4px;
 	text-align: center;
 	font-size: 0.875rem;
