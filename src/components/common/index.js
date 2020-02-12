@@ -40,3 +40,9 @@ export const TimeIcon = styled.i`
 	margin: 1rem 0;
 	font-size: 1.125rem;
 `;
+
+export const Icon = styled.i`
+	margin: ${props => props.margin};
+	font-size: ${props => props.fontSize};
+	color: ${props => props.color};
+`;

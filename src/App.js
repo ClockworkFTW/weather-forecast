@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { fetchForecast } from "./reducers/forecast";
 
 import { GlobalStyle } from "./components/common";
-import Renderer from "./components/common/Renderer";
+import Render from "./components/common/Render";
 import Header from "./components/Header";
 import Day from "./components/Day";
 import Week from "./components/Week";
@@ -25,14 +25,14 @@ const App = ({ fetchForecast }) => {
 			<Main headerHeight={headerHeight}>
 				<Switch>
 					<Route path="/" exact>
-						<Renderer>
+						<Render>
 							<Day />
-						</Renderer>
+						</Render>
 					</Route>
 					<Route path="/week">
-						<Renderer>
+						<Render>
 							<Week />
-						</Renderer>
+						</Render>
 					</Route>
 				</Switch>
 			</Main>

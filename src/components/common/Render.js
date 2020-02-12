@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Error from "./Error";
 import Loader from "./Loader";
 
-const Renderer = ({ pending, children, error }) => {
+const Render = ({ pending, children, error }) => {
 	if (error) {
 		return <Error error={error} />;
 	} else if (pending) {
@@ -19,4 +19,4 @@ const mapStateToProps = state => ({
 	error: state.forecast.error
 });
 
-export default connect(mapStateToProps)(Renderer);
+export default connect(mapStateToProps)(Render);
