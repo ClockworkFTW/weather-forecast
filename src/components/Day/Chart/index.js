@@ -8,7 +8,7 @@ import View from "./View";
 const Chart = ({ width, height, data }) => {
 	const [prop, setProp] = useState("temperature");
 
-	const chartData = data.map(e => {
+	const chartData = data.hourly.data.map(e => {
 		const y = e[prop];
 		const x = moment.unix(e.time).format("hA");
 		return { x, y };

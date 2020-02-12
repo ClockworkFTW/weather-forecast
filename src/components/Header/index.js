@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import Search from "./Search";
 
@@ -13,6 +14,7 @@ const Header = ({ setHeaderHeight }) => {
 	return (
 		<Container ref={headerRef}>
 			<Search />
+			<Link to="/week">X</Link>
 		</Container>
 	);
 };

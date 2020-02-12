@@ -12,13 +12,12 @@ export const fetchLocalForecast = async () => {
 	const position = await getPosition();
 	const coords = `${position.coords.latitude},${position.coords.longitude}`;
 
-	let location = await geocodeServices.getLocation(coords);
+	const location = await geocodeServices.getLocation(coords);
+	const forecast = await darkskyServices.getForecast(coords);
 	if (location.status === "OK") {
-		location = location.results[0].formatted_address;
-		const forecast = await darkskyServices.getForecast(coords);
-		return { ...forecast, location };
+		return { ...forecast, location: location.results[0].formatted_address };
 	} else {
-		throw new Error("location not found");
+		return { ...forecast, location: "location unknown" };
 	}
 };
 

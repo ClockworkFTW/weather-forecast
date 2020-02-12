@@ -6,18 +6,18 @@ import Header from "./Header";
 import Body from "./Body";
 
 const Current = ({ data, activePeriod }) => {
-	let mergedData = [data.currently, ...data.hourly.data];
-	mergedData.length = 24;
+	const mergedData = [data.currently, ...data.hourly.data];
 	const focusData = mergedData.find((e, index) => index === activePeriod);
+	const todayData = data.daily.data[0];
 
 	const currentTemp = Math.round(focusData.temperature);
 	const weatherIcon = `wi wi-${focusData.icon}`;
 	const summary = focusData.summary;
-	const lowTemp = Math.round(data.daily.data[0].temperatureLow);
-	const highTemp = Math.round(data.daily.data[0].temperatureHigh);
+	const lowTemp = Math.round(todayData.temperatureLow);
+	const highTemp = Math.round(todayData.temperatureHigh);
 	const apparentTemp = Math.round(focusData.apparentTemperature);
-	const sunrise = moment.unix(data.daily.data[0].sunriseTime).format("h:mma");
-	const sunset = moment.unix(data.daily.data[0].sunsetTime).format("h:mma");
+	const sunrise = moment.unix(todayData.sunriseTime).format("h:mma");
+	const sunset = moment.unix(todayData.sunsetTime).format("h:mma");
 	const windSpeed = Math.round(focusData.windSpeed);
 	const precipProb = Math.round(focusData.precipProbability * 100);
 	const uvIndex = focusData.uvIndex;
