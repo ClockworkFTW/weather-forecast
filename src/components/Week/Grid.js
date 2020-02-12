@@ -53,12 +53,12 @@ const Grid = props => {
 			</GridItem>
 			<GridItem>
 				<Icon
-					className="wi wi-smoke"
+					className="wi wi-day-haze"
 					margin="0 0.375rem 0 0"
 					fontSize="1.125rem"
 					color="#3894fb"
 				/>
-				<Info>{visibility}%</Info>
+				<Info>{visibility}</Info>
 			</GridItem>
 			<GridItem>
 				<Icon

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 
-import { fetchForecast } from "./reducers/forecast";
+import { initForecast, fetchForecast } from "./reducers/forecast";
 
 import { GlobalStyle } from "./components/common";
 import Render from "./components/common/Render";
@@ -11,11 +11,18 @@ import Header from "./components/Header";
 import Day from "./components/Day";
 import Week from "./components/Week";
 
-const App = ({ fetchForecast }) => {
+const App = ({ initForecast, fetchForecast }) => {
 	const [headerHeight, setHeaderHeight] = useState(null);
 
 	useEffect(() => {
-		fetchForecast();
+		const cachedForecast = window.localStorage.getItem(
+			"weather-forecast-data"
+		);
+		if (cachedForecast) {
+			initForecast(JSON.parse(cachedForecast));
+		} else {
+			fetchForecast();
+		}
 	}, []);
 
 	return (
@@ -25,6 +32,11 @@ const App = ({ fetchForecast }) => {
 			<Main headerHeight={headerHeight}>
 				<Switch>
 					<Route path="/" exact>
+						<Render>
+							<h1>Home Page</h1>
+						</Render>
+					</Route>
+					<Route path="/day">
 						<Render>
 							<Day />
 						</Render>
@@ -47,4 +59,4 @@ const Main = styled.div`
 	overflow: scroll;
 `;
 
-export default connect(null, { fetchForecast })(App);
+export default connect(null, { initForecast, fetchForecast })(App);

@@ -3,9 +3,9 @@ import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 
 const Toggle = ({ location }) => {
-	const toggle = location.pathname === "/";
+	const toggle = location.pathname === "/day";
 	return (
-		<RouterLink to={toggle ? "/week" : "/"}>
+		<RouterLink to={toggle ? "/week" : "/day"}>
 			{toggle ? "X" : "O"}
 		</RouterLink>
 	);

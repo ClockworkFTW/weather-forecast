@@ -4,23 +4,28 @@ import moment from "moment";
 
 import { Icon } from "../common";
 import Grid from "./Grid";
+import UV from "./UV";
 
 const Day = ({ day, index, activePeriod, setActivePeriod }) => {
+	// Header
 	const timeDay = moment.unix(day.time).format("dddd");
 	const timeDate = moment.unix(day.time).format("DD MMM - YYYY");
-
 	const tempLow = Math.round(day.temperatureLow);
 	const tempHigh = Math.round(day.temperatureHigh);
 
-	const moonphase = day.moonPhase * 100;
-	const cloudCover = day.cloudCover * 100;
+	// Stat chart
+	const moonphase = Math.round(day.moonPhase * 100);
+	const cloudCover = Math.round(day.cloudCover * 100);
 	const windSpeed = Math.round(day.windSpeed);
 	const humidity = Math.round(day.humidity * 100);
-	const visibility = day.visibility * 100;
-	const precipProb = day.precipProbability * 100;
+	const visibility = day.visibility;
+	const precipProb = Math.round(day.precipProbability * 100);
 
-	const sunrise = moment.unix(day.sunriseTime).format("h:mm");
-	const sunset = moment.unix(day.sunsetTime).format("h:mm");
+	// UV Display
+	const uvIndex = day.uvIndex;
+	const uvTime = moment.unix(day.uvIndexTime).format("h:mm a");
+	const sunrise = moment.unix(day.sunriseTime).format("h:mm a");
+	const sunset = moment.unix(day.sunsetTime).format("h:mm a");
 
 	return (
 		<Container onClick={() => setActivePeriod(index)}>
@@ -49,14 +54,12 @@ const Day = ({ day, index, activePeriod, setActivePeriod }) => {
 						visibility={visibility}
 						precipProb={precipProb}
 					/>
-					<h1>
-						<Icon className="wi wi-sunrise" />
-						{sunrise}
-					</h1>
-					<h1>
-						<Icon className="wi wi-sunset" />
-						{sunset}
-					</h1>
+					<UV
+						uvIndex={uvIndex}
+						uvTime={uvTime}
+						sunrise={sunrise}
+						sunset={sunset}
+					/>
 				</Body>
 			)}
 		</Container>
