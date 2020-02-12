@@ -36,12 +36,14 @@ const Search = ({ fetchForecast, data, pending }) => {
 };
 
 const Container = styled.div`
+	flex-grow: 1;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 `;
 
 const Input = styled.input`
+	flex-grow: 1;
 	outline: none;
 	border: none;
 	background: none;
