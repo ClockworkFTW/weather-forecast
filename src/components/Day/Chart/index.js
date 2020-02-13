@@ -26,7 +26,7 @@ const Chart = ({ width, height, data }) => {
 
 const Container = styled.div`
 	margin: 20px 0;
-	padding: 10px 5px;
+	padding: 5px;
 	border-radius: 4px;
 	background: #ffffff;
 	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),

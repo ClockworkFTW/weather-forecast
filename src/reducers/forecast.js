@@ -49,7 +49,10 @@ const forecastReducer = (state = INITIAL_STATE, action) => {
 		case FETCH_FORECAST_PENDING:
 			return { ...state, pending: true };
 		case FETCH_FORECAST_SUCCESS:
-			window.localStorage.setItem("weather-forecast-data", action.data);
+			window.localStorage.setItem(
+				"weather-forecast-data",
+				JSON.stringify(action.data)
+			);
 			return { ...state, pending: false, data: action.data };
 		case FETCH_FORECAST_ERROR:
 			return { ...state, pending: false, error: action.error };

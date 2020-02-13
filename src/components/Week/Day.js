@@ -14,7 +14,19 @@ const Day = ({ day, index, activePeriod, setActivePeriod }) => {
 	const tempHigh = Math.round(day.temperatureHigh);
 
 	// Body
-	const { summary, windBearing } = day;
+	const summary = day.summary;
+	const windBearing = () => {
+		const deg = day.windBearing;
+		if (deg > 0 && deg < 90) {
+			return "north east";
+		} else if (deg > 90 && deg < 180) {
+			return "south east";
+		} else if (deg > 180 && deg < 270) {
+			return "south west";
+		} else {
+			return "north west";
+		}
+	};
 	const windGust = Math.round(day.windGust);
 	const windGustTime = moment.unix(day.windGustTime).format("ha");
 
@@ -52,8 +64,8 @@ const Day = ({ day, index, activePeriod, setActivePeriod }) => {
 					<WeekDate>{timeDate}</WeekDate>
 					<Summary>
 						{summary} Average winds of {windSpeed} mph from the{" "}
-						{windBearing} with wind gusts of up to {windGust} mph at{" "}
-						{windGustTime}.
+						{windBearing()} with wind gusts of up to {windGust} mph
+						at {windGustTime}.
 					</Summary>
 					<Grid
 						moonphase={moonphase}
