@@ -7,7 +7,11 @@ const UV = ({ uvIndex, uvTime, sunrise, sunset }) => (
 	<Container>
 		<Top>
 			<h1>
-				<Icon className="wi wi-day-sunny" />
+				<Icon
+					className="wi wi-day-sunny"
+					margin="0 4px 0 0"
+					fontSize="0.875rem"
+				/>
 				Max UV: {uvIndex}
 			</h1>
 		</Top>

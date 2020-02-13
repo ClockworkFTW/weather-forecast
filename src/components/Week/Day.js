@@ -13,6 +13,11 @@ const Day = ({ day, index, activePeriod, setActivePeriod }) => {
 	const tempLow = Math.round(day.temperatureLow);
 	const tempHigh = Math.round(day.temperatureHigh);
 
+	// Body
+	const { summary, windBearing } = day;
+	const windGust = Math.round(day.windGust);
+	const windGustTime = moment.unix(day.windGustTime).format("ha");
+
 	// Stat chart
 	const moonphase = Math.round(day.moonPhase * 100);
 	const cloudCover = Math.round(day.cloudCover * 100);
@@ -30,8 +35,8 @@ const Day = ({ day, index, activePeriod, setActivePeriod }) => {
 	return (
 		<Container onClick={() => setActivePeriod(index)}>
 			<Header>
-				<h1>{timeDay}</h1>
-				<Summary>
+				<Weekday>{timeDay}</Weekday>
+				<Temp>
 					<Info>
 						{tempLow}&deg; / {tempHigh}&deg;
 					</Info>
@@ -40,12 +45,16 @@ const Day = ({ day, index, activePeriod, setActivePeriod }) => {
 						fontSize="1.125rem"
 						color="#718096"
 					/>
-				</Summary>
+				</Temp>
 			</Header>
 			{activePeriod === index && (
 				<Body>
-					<h1>{timeDate}</h1>
-					<h1>{day.summary}</h1>
+					<WeekDate>{timeDate}</WeekDate>
+					<Summary>
+						{summary} Average winds of {windSpeed} mph from the{" "}
+						{windBearing} with wind gusts of up to {windGust} mph at{" "}
+						{windGustTime}.
+					</Summary>
 					<Grid
 						moonphase={moonphase}
 						cloudCover={cloudCover}
@@ -83,7 +92,12 @@ const Header = styled.div`
 	justify-content: space-between;
 `;
 
-const Summary = styled.div`
+const Weekday = styled.h1`
+	font-weight: 500;
+	color: #2d3748;
+`;
+
+const Temp = styled.div`
 	width: 26%;
 	display: flex;
 	justify-content: space-between;
@@ -97,6 +111,18 @@ const Info = styled.h3`
 
 const Body = styled.div`
 	margin-top: 1.25rem;
+`;
+
+const WeekDate = styled.h2`
+	font-size: 0.875rem;
+	color: #4a5568;
+`;
+
+const Summary = styled.p`
+	margin-top: 1rem;
+	line-height: 1.25rem;
+	font-size: 0.875rem;
+	color: #4a5568;
 `;
 
 export default Day;

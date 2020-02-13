@@ -40,7 +40,7 @@ const Grid = props => {
 					fontSize="1.125rem"
 					color="#3894fb"
 				/>
-				<Info>{windSpeed}mph</Info>
+				<Info>{windSpeed} mph</Info>
 			</GridItem>
 			<GridItem>
 				<Icon
@@ -58,7 +58,7 @@ const Grid = props => {
 					fontSize="1.125rem"
 					color="#3894fb"
 				/>
-				<Info>{visibility}</Info>
+				<Info>{visibility} miles</Info>
 			</GridItem>
 			<GridItem>
 				<Icon
