@@ -19,21 +19,9 @@ export const Temp = styled.h1`
 	color: #353344;
 `;
 
-export const CurrInfo = styled.h3`
-	font-size: 1rem;
-	font-weight: 500;
-	color: #353344;
-`;
-
 export const WeatherIcon = styled.i`
 	font-size: 3.5rem;
 	color: #f7af0a;
-`;
-
-export const CurrIcon = styled.i`
-	margin-right: 0.375rem;
-	font-size: 1.125rem;
-	color: #3894fb;
 `;
 
 export const TimeIcon = styled.i`

@@ -3,18 +3,21 @@ import styled from "styled-components";
 import moment from "moment";
 
 import { Icon } from "../common";
-import Grid from "./Grid";
+import Grid from "../common/Grid";
 import UV from "./UV";
 
 const Day = ({ day, index, activePeriod, setActivePeriod }) => {
-	// Header
+	// Header data
 	const timeDay = moment.unix(day.time).format("dddd");
 	const timeDate = moment.unix(day.time).format("DD MMM - YYYY");
 	const tempLow = Math.round(day.temperatureLow);
 	const tempHigh = Math.round(day.temperatureHigh);
 
-	// Body
+	// Body data
 	const summary = day.summary;
+	const windSpeed = Math.round(day.windSpeed);
+	const windGust = Math.round(day.windGust);
+	const windGustTime = moment.unix(day.windGustTime).format("ha");
 	const windBearing = () => {
 		const deg = day.windBearing;
 		if (deg > 0 && deg < 90) {
@@ -27,18 +30,21 @@ const Day = ({ day, index, activePeriod, setActivePeriod }) => {
 			return "north west";
 		}
 	};
-	const windGust = Math.round(day.windGust);
-	const windGustTime = moment.unix(day.windGustTime).format("ha");
 
-	// Stat chart
-	const moonphase = Math.round(day.moonPhase * 100);
-	const cloudCover = Math.round(day.cloudCover * 100);
-	const windSpeed = Math.round(day.windSpeed);
-	const humidity = Math.round(day.humidity * 100);
-	const visibility = day.visibility;
-	const precipProb = Math.round(day.precipProbability * 100);
+	// Grid data
+	const items = [
+		{ value: `${Math.round(day.moonPhase * 100)}%`, icon: "night-clear" },
+		{ value: `${Math.round(day.cloudCover * 100)}%`, icon: "cloud" },
+		{ value: `${Math.round(day.windSpeed)} mph`, icon: "strong-wind" },
+		{ value: `${Math.round(day.humidity * 100)}%`, icon: "raindrops" },
+		{
+			value: `${Math.round(day.precipProbability * 100)}%`,
+			icon: "umbrella"
+		},
+		{ value: `${day.visibility.toFixed(1)} miles`, icon: "day-haze" }
+	];
 
-	// UV Display
+	// UV data
 	const uvIndex = day.uvIndex;
 	const uvTime = moment.unix(day.uvIndexTime).format("h:mm a");
 	const sunrise = moment.unix(day.sunriseTime).format("h:mm a");
@@ -67,14 +73,7 @@ const Day = ({ day, index, activePeriod, setActivePeriod }) => {
 						{windBearing()} with wind gusts of up to {windGust} mph
 						at {windGustTime}.
 					</Summary>
-					<Grid
-						moonphase={moonphase}
-						cloudCover={cloudCover}
-						windSpeed={windSpeed}
-						humidity={humidity}
-						visibility={visibility}
-						precipProb={precipProb}
-					/>
+					<Grid items={items} />
 					<UV
 						uvIndex={uvIndex}
 						uvTime={uvTime}

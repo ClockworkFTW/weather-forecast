@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Icon } from "../../common";
+import { Icon } from "../common";
 
-const Body = ({ items }) => (
+const Grid = ({ items }) => (
 	<GridContainer>
 		{items.map(item => (
 			<GridItem>
@@ -37,4 +37,4 @@ const Info = styled.span`
 	color: #353344;
 `;
 
-export default Body;
+export default Grid;
