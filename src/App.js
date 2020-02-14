@@ -53,7 +53,9 @@ const App = ({ initForecast, fetchForecast }) => {
 };
 
 const Main = styled.div`
+	max-width: 600px;
 	height: ${props => `calc(100vh - ${props.headerHeight}px)`};
+	margin: 0 auto;
 	padding: 30px 20px;
 	background: #faf9fa;
 	overflow: scroll;

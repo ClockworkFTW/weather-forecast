@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Temp, WeatherIcon } from "../../common";
+import { Icon } from "../../common";
 
 const Header = ({
 	currentTemp,
@@ -14,16 +14,16 @@ const Header = ({
 	<Container>
 		<Row>
 			<Temp>{currentTemp}&deg;</Temp>
-			<WeatherIcon className={weatherIcon} />
+			<Icon className={weatherIcon} fontSize="3.5rem" color="#f7af0a" />
 		</Row>
 		<Row>
-			<Info>
-				{summary}{" "}
-				<span>
-					{lowTemp}&deg;/{highTemp}&deg;
-				</span>
-			</Info>
-			<Info>Feels like {apparentTemp}&deg;</Info>
+			<Summary>
+				{summary}
+				<Temps>
+					{lowTemp}&deg; / {highTemp}&deg;
+				</Temps>
+			</Summary>
+			<Apparent>Feels like {apparentTemp}&deg;</Apparent>
 		</Row>
 	</Container>
 );
@@ -36,12 +36,28 @@ const Row = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	:nth-last-child(1) {
+		margin-top: 1.25rem;
+	}
 `;
 
-const Info = styled.h4`
-	margin-top: 1.25rem;
+const Temp = styled.h1`
+	font-family: "Lexend Deca";
+	font-size: 4.5rem;
+	color: #353344;
+`;
+const Summary = styled.h1`
 	font-size: 0.875rem;
-	color: #718096;
+	font-weight: 500;
+	color: #2d3748;
+`;
+const Temps = styled.span`
+	margin-left: 1rem;
+	font-weight: 400;
+`;
+const Apparent = styled.h3`
+	font-size: 0.875rem;
+	color: #2d3748;
 `;
 
 export default Header;

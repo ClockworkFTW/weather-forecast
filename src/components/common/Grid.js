@@ -5,8 +5,8 @@ import { Icon } from "../common";
 
 const Grid = ({ items, margin }) => (
 	<GridContainer margin={margin}>
-		{items.map(item => (
-			<GridItem>
+		{items.map((item, index) => (
+			<GridItem key={index}>
 				<Icon
 					className={`wi wi-${item.icon}`}
 					margin=" 0 0.375rem 0 0"

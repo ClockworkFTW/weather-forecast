@@ -4,6 +4,9 @@ import styled from "styled-components";
 
 import { fetchForecast } from "../../reducers/forecast";
 
+import { IconSVG } from "../common";
+import search from "../../assets/icons/svg/search.svg";
+
 const Search = ({ fetchForecast, data, pending }) => {
 	const [term, setTerm] = useState("");
 
@@ -30,7 +33,9 @@ const Search = ({ fetchForecast, data, pending }) => {
 				value={term}
 				onChange={event => setTerm(event.target.value)}
 			/>
-			<Button onClick={handleSearch}>Q</Button>
+			<Button onClick={handleSearch}>
+				<IconSVG icon={search} width="1.5rem" height="1.5rem" />
+			</Button>
 		</Container>
 	);
 };
@@ -58,6 +63,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
+	padding: 4px;
 	outline: none;
 	border: none;
 	background: none;

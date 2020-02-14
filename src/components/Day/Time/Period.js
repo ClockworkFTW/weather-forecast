@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import moment from "moment";
 
-import { TimeIcon } from "../../common";
+import { Icon } from "../../common";
 
 const Day = ({ data, activePeriod, setPeriod, index }) => {
 	const time = index === 0 ? "NOW" : moment.unix(data.time).format("HH:mm");
@@ -14,7 +14,7 @@ const Day = ({ data, activePeriod, setPeriod, index }) => {
 			onClick={() => setPeriod(index)}
 		>
 			<h3>{time}</h3>
-			<TimeIcon className={icon} />
+			<Icon className={icon} margin="1rem 0" fontSize="1.125rem" />
 			<h3>{temp}&deg;</h3>
 		</Container>
 	);

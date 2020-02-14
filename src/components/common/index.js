@@ -10,27 +10,24 @@ export const GlobalStyle = createGlobalStyle`
 	body {
 		font-family: 'Roboto', sans-serif;
 		font-size: 16px;
+		background: #faf9fa;
 	}
 `;
 
-export const Temp = styled.h1`
-	font-family: "Lexend Deca";
-	font-size: 4rem;
-	color: #353344;
-`;
-
-export const WeatherIcon = styled.i`
-	font-size: 3.5rem;
-	color: #f7af0a;
-`;
-
-export const TimeIcon = styled.i`
-	margin: 1rem 0;
-	font-size: 1.125rem;
+export const Layout = styled.div`
+	max-width: 800px;
+	margin: 0 auto;
 `;
 
 export const Icon = styled.i`
 	margin: ${props => props.margin};
 	font-size: ${props => props.fontSize};
 	color: ${props => props.color};
+`;
+
+export const IconSVG = styled.div`
+	width: ${props => props.width};
+	height: ${props => props.height};
+	background-image: ${props => `url(${props.icon})`};
+	background-size: cover;
 `;
