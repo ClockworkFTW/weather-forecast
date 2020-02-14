@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 import { Icon } from "../common";
 
-const Grid = ({ items }) => (
-	<GridContainer>
+const Grid = ({ items, margin }) => (
+	<GridContainer margin={margin}>
 		{items.map(item => (
 			<GridItem>
 				<Icon
@@ -23,6 +23,7 @@ const GridContainer = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr;
+	margin: ${props => props.margin};
 `;
 
 const GridItem = styled.div`

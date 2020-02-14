@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const KEY = "AIzaSyA2HVmCDtmeYhg9jgLRUtYEb40rfXiyu4w";
+const KEY = process.env.REACT_APP_GEOCODE_API_KEY;
 const URL = "https://maps.googleapis.com/maps/api/geocode/json";
 
 const getLocation = async latlng => {

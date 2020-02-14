@@ -73,7 +73,7 @@ const Day = ({ day, index, activePeriod, setActivePeriod }) => {
 						{windBearing()} with wind gusts of up to {windGust} mph
 						at {windGustTime}.
 					</Summary>
-					<Grid items={items} />
+					<Grid items={items} margin="1rem 0" />
 					<UV
 						uvIndex={uvIndex}
 						uvTime={uvTime}
