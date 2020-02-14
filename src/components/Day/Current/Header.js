@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { Icon } from "../../common";
+import Temp from "./Temp";
 
 const Header = ({
 	currentTemp,
@@ -13,7 +14,7 @@ const Header = ({
 }) => (
 	<Container>
 		<Row>
-			<Temp>{currentTemp}&deg;</Temp>
+			<Temp currentTemp={currentTemp} />
 			<Icon className={weatherIcon} fontSize="3.5rem" color="#f7af0a" />
 		</Row>
 		<Row>
@@ -41,11 +42,6 @@ const Row = styled.div`
 	}
 `;
 
-const Temp = styled.h1`
-	font-family: "Lexend Deca";
-	font-size: 4.5rem;
-	color: #353344;
-`;
 const Summary = styled.h1`
 	font-size: 0.875rem;
 	font-weight: 500;

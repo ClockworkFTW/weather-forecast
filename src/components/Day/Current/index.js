@@ -29,6 +29,7 @@ const Current = ({ data, activePeriod }) => {
 			value: moment.unix(todayData.sunsetTime).format("h:mma"),
 			icon: "sunset"
 		},
+		{ value: focusData.uvIndex, icon: "day-sunny" },
 		{
 			value: `${Math.round(focusData.windSpeed)} mph`,
 			icon: "strong-wind"
@@ -37,7 +38,6 @@ const Current = ({ data, activePeriod }) => {
 			value: `${Math.round(focusData.precipProbability * 100)}%`,
 			icon: "umbrella"
 		},
-		{ value: focusData.uvIndex, icon: "day-sunny" },
 		{ value: `${Math.round(focusData.humidity * 100)}%`, icon: "raindrops" }
 	];
 
