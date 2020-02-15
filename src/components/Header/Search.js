@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 import { fetchForecast } from "../../reducers/forecast";
@@ -62,7 +63,7 @@ const Input = styled.input`
 	}
 `;
 
-const Button = styled.button`
+const Button = styled(motion.button)`
 	padding: 4px;
 	outline: none;
 	border: none;
@@ -75,6 +76,14 @@ const Button = styled.button`
 		cursor: pointer;
 	}
 `;
+
+// Add disabled state
+
+const button = {
+	rest: { scale: 1, opacity: 0.8 },
+	hover: { scale: 1.1, opacity: 1 },
+	pressed: { scale: 0.95, opacity: 1 }
+};
 
 const mapStateToProps = state => ({
 	data: state.forecast.data,

@@ -31,3 +31,23 @@ export const IconSVG = styled.div`
 	background-image: ${props => `url(${props.icon})`};
 	background-size: cover;
 `;
+
+export const pageVariants = {
+	left: {
+		opacity: 0,
+		x: "-100vw"
+	},
+	animate: {
+		opacity: 1,
+		x: 0
+	},
+	right: {
+		opacity: 0,
+		x: "100vw"
+	}
+};
+
+export const pageTransition = {
+	type: "tween",
+	ease: "anticipate"
+};

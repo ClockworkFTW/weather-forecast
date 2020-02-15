@@ -18,7 +18,7 @@ const Chart = ({ width, height, data }) => {
 
 	return (
 		<Container>
-			<Select setProp={setProp} />
+			{/* <Select setProp={setProp} /> */}
 			<View width={width} height={height} data={chartData} prop={prop} />
 		</Container>
 	);

@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
+import { pageVariants, pageTransition } from "../../common";
 import Day from "./Day";
 
-const Week = ({ data }) => {
+const Week = ({ data, pathname }) => {
 	const [activePeriod, setActivePeriod] = useState(0);
 	return (
 		data && (
-			<Container>
+			<Container
+				initial={pathname === "/day" ? "left" : "right"}
+				animate="animate"
+				exit={pathname === "/week" ? "right" : "left"}
+				variants={pageVariants}
+				transition={pageTransition}
+			>
 				{data.daily.data.map((day, index) => (
 					<Day
 						key={day.time}
@@ -23,7 +31,7 @@ const Week = ({ data }) => {
 	);
 };
 
-const Container = styled.div``;
+const Container = styled(motion.div)``;
 
 const mapStateToProps = state => ({ data: state.forecast.data });
 

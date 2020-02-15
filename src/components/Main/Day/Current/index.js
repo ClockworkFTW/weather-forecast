@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import moment from "moment";
 
-import Grid from "../../common/Grid";
+import Grid from "../../../common/Grid";
 import Header from "./Header";
 
 const Current = ({ data, activePeriod }) => {
@@ -44,6 +44,7 @@ const Current = ({ data, activePeriod }) => {
 	return (
 		<Container>
 			<Header
+				activePeriod={activePeriod}
 				currentTemp={currentTemp}
 				weatherIcon={weatherIcon}
 				lowTemp={lowTemp}

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import moment from "moment";
 
-import { setPeriod } from "../../../reducers/period";
+import { setPeriod } from "../../../../reducers/period";
 import Period from "./Period";
 
 const Week = ({ data, activePeriod, setPeriod }) => {

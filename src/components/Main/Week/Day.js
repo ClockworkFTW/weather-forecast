@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import moment from "moment";
 
-import { Icon } from "../common";
-import Grid from "../common/Grid";
+import { Icon } from "../../common";
+import Grid from "../../common/Grid";
 import UV from "./UV";
 
 const Day = ({ day, index, activePeriod, setActivePeriod }) => {

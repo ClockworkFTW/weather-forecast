@@ -1,21 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
+import { pageVariants, pageTransition } from "../../common";
 import Current from "./Current";
 import Chart from "./Chart";
 import Time from "./Time";
 
-const Day = ({ data, activePeriod }) =>
+const Day = ({ data, activePeriod, pathname }) =>
 	data && (
-		<Container>
+		<Container
+			initial={pathname === "/day" ? "left" : "right"}
+			animate="animate"
+			exit={pathname === "/week" ? "right" : "left"}
+			variants={pageVariants}
+			transition={pageTransition}
+		>
 			<Current data={data} activePeriod={activePeriod} />
 			<Chart width="100%" height={200} data={data} />
 			<Time data={data} />
 		</Container>
 	);
 
-const Container = styled.div`
+const Container = styled(motion.div)`
 	height: 100%;
 	display: flex;
 	flex-direction: column;

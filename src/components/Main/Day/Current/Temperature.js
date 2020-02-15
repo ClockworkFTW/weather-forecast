@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import CountUp from "react-countup";
 
-const Temp = ({ currentTemp }) => {
+const Temperature = ({ temperature }) => {
 	const usePrevious = value => {
 		const ref = useRef();
 		useEffect(() => {
@@ -11,11 +11,11 @@ const Temp = ({ currentTemp }) => {
 		return ref.current;
 	};
 
-	const prevTemp = usePrevious(currentTemp);
+	const prevTemp = usePrevious(temperature);
 
 	return (
 		<Container>
-			<CountUp start={prevTemp} end={currentTemp} />
+			<CountUp start={prevTemp} end={temperature} />
 			&deg;
 		</Container>
 	);
@@ -27,4 +27,4 @@ const Container = styled.div`
 	color: #353344;
 `;
 
-export default Temp;
+export default Temperature;

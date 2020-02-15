@@ -39,3 +39,7 @@ export const fetchSearchForecast = async term => {
 		throw new Error("location not found");
 	}
 };
+
+// Set color based on time period
+export const setPeriodColor = (time, sunrise, sunset) =>
+	time > sunrise && time < sunset ? "" : "";

@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Icon } from "../../common";
-import Temp from "./Temp";
+import Temp from "./Temperature";
+import WeatherIcon from "./WeatherIcon";
 
 const Header = ({
+	activePeriod,
 	currentTemp,
 	weatherIcon,
 	lowTemp,
@@ -14,8 +15,8 @@ const Header = ({
 }) => (
 	<Container>
 		<Row>
-			<Temp currentTemp={currentTemp} />
-			<Icon className={weatherIcon} fontSize="3.5rem" color="#f7af0a" />
+			<Temp temperature={currentTemp} />
+			<WeatherIcon key={activePeriod} icon={weatherIcon} />
 		</Row>
 		<Row>
 			<Summary>
