@@ -9,16 +9,16 @@ import {
 	YAxis
 } from "recharts";
 
-const View = ({ width, height, data }) => (
-	<ResponsiveContainer width={width} height={height}>
+const View = ({ height, color, data }) => (
+	<ResponsiveContainer height={height}>
 		<AreaChart
 			data={data}
 			margin={{ top: 20, right: 20, bottom: 5, left: 20 }}
 		>
 			<defs>
 				<linearGradient id="colorY" x1="0" y1="0" x2="0" y2="1">
-					<stop offset="5%" stopColor="#f8af0a" stopOpacity={0.8} />
-					<stop offset="95%" stopColor="#f8af0a" stopOpacity={0} />
+					<stop offset="5%" stopColor={color} stopOpacity={0.8} />
+					<stop offset="95%" stopColor={color} stopOpacity={0} />
 				</linearGradient>
 			</defs>
 			<XAxis
@@ -26,7 +26,7 @@ const View = ({ width, height, data }) => (
 				interval={3}
 				tickLine={false}
 				axisLine={false}
-				fontSize="14px"
+				fontSize="0.75rem"
 				stroke="#A0AEC0"
 			/>
 			<YAxis
@@ -53,7 +53,7 @@ const renderCustomizedLabel = ({ x, y, value }) => (
 		<text
 			x={x}
 			y={y - 15}
-			fontSize="14px"
+			fontSize="0.75rem"
 			fill="#A0AEC0"
 			position="top"
 			offset={10}

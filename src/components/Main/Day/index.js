@@ -18,7 +18,7 @@ const Day = ({ data, activePeriod, pathname }) =>
 			transition={pageTransition}
 		>
 			<Current data={data} activePeriod={activePeriod} />
-			<Chart width="100%" height={200} data={data} />
+			<Chart data={data} />
 			<Time data={data} />
 		</Container>
 	);

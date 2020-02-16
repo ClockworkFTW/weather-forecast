@@ -42,4 +42,4 @@ export const fetchSearchForecast = async term => {
 
 // Set color based on time period
 export const setPeriodColor = (time, sunrise, sunset) =>
-	time > sunrise && time < sunset ? "" : "";
+	time > sunrise && time < sunset ? "#ffdb18" : "#5A67D8";

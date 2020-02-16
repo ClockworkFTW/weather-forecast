@@ -1,31 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import moment from "moment";
 
+import { setPeriodColor } from "../../../../util";
 import Select from "./Select";
 import View from "./View";
 
-const Chart = ({ width, height, data }) => {
+const Chart = ({ data }) => {
 	const [prop, setProp] = useState("temperature");
+	const [chartHeight, setChartHeight] = useState(null);
+
+	const chartRef = useRef(null);
+
+	useEffect(() => {
+		setChartHeight(chartRef.current.offsetHeight);
+	}, [setChartHeight]);
 
 	const chartData = data.hourly.data.map(e => {
-		const y = e[prop];
+		const y = prop === "precipProbability" ? e[prop] * 100 : e[prop];
 		const x = moment.unix(e.time).format("hA");
 		return { x, y };
 	});
 
 	chartData.length = 25;
 
+	const color = setPeriodColor(
+		data.currently.time,
+		data.daily.data[0].sunriseTime,
+		data.daily.data[0].sunsetTime
+	);
+
 	return (
-		<Container>
-			{/* <Select setProp={setProp} /> */}
-			<View width={width} height={height} data={chartData} prop={prop} />
+		<Container ref={chartRef}>
+			<Select prop={prop} setProp={setProp} />
+			<View
+				height={chartHeight - 20}
+				color={color}
+				data={chartData}
+				prop={prop}
+			/>
 		</Container>
 	);
 };
 
 const Container = styled.div`
-	margin: 20px 0;
+	flex: 1;
+	margin: 20px 0 30px 0;
 	padding: 5px;
 	border-radius: 4px;
 	background: #ffffff;

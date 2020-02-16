@@ -34,7 +34,13 @@ const Search = ({ fetchForecast, data, pending }) => {
 				value={term}
 				onChange={event => setTerm(event.target.value)}
 			/>
-			<Button onClick={handleSearch}>
+			<Button
+				onClick={handleSearch}
+				variants={button}
+				initial="rest"
+				whileHover="hover"
+				whileTap="pressed"
+			>
 				<IconSVG icon={search} width="1.5rem" height="1.5rem" />
 			</Button>
 		</Container>
@@ -76,8 +82,6 @@ const Button = styled(motion.button)`
 		cursor: pointer;
 	}
 `;
-
-// Add disabled state
 
 const button = {
 	rest: { scale: 1, opacity: 0.8 },

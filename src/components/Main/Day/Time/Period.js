@@ -22,7 +22,7 @@ const Day = ({ data, activePeriod, setPeriod, index }) => {
 
 const Container = styled.div`
 	display: inline-block;
-	margin: 10px 0px;
+	margin: 10px 4px;
 	padding: 14px;
 	border-radius: 4px;
 	text-align: center;
