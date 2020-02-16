@@ -14,12 +14,7 @@ const Main = ({ headerHeight }) => {
 		<Container headerHeight={headerHeight}>
 			<AnimatePresence exitBeforeEnter>
 				<Switch location={location} key={location.pathname}>
-					<Route path="/weather-forecast/" exact>
-						<Render>
-							<h1>Home Page</h1>
-						</Render>
-					</Route>
-					<Route path="/weather-forecast/day">
+					<Route path="/weather-forecast" exact>
 						<Render>
 							<Day pathname={location.pathname} />
 						</Render>

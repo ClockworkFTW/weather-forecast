@@ -11,9 +11,7 @@ const Week = ({ data, pathname }) => {
 	return (
 		data && (
 			<Container
-				initial={
-					pathname === "/weather-forecast/day" ? "left" : "right"
-				}
+				initial={pathname === "/weather-forecast" ? "left" : "right"}
 				animate="animate"
 				exit={pathname === "/weather-forecast/week" ? "right" : "left"}
 				variants={pageVariants}

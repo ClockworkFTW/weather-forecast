@@ -8,7 +8,7 @@ import home from "../../assets/icons/svg/home.svg";
 import grid from "../../assets/icons/svg/grid.svg";
 
 const Toggle = ({ location }) => {
-	const toggle = location.pathname === "/weather-forecast/day";
+	const toggle = location.pathname === "/weather-forecast";
 	return (
 		<Container
 			variants={button}
@@ -17,7 +17,7 @@ const Toggle = ({ location }) => {
 			whileTap="pressed"
 		>
 			<RouterLink
-				to={toggle ? "/weather-forecast/week" : "/weather-forecast/day"}
+				to={toggle ? "/weather-forecast/week" : "/weather-forecast"}
 			>
 				{toggle ? (
 					<IconSVG icon={grid} width="1.5rem" height="1.5rem" />

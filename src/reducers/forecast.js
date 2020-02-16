@@ -1,15 +1,8 @@
 import { fetchLocalForecast, fetchSearchForecast } from "../util";
 
-const INIT_FORECAST = "INIT_FORECAST";
-
 const FETCH_FORECAST_PENDING = "FETCH_FORECAST_PENDING";
 const FETCH_FORECAST_SUCCESS = "FETCH_FORECAST_SUCCESS";
 const FETCH_FORECAST_ERROR = "FETCH_FORECAST_ERROR";
-
-export const initForecast = data => ({
-	type: INIT_FORECAST,
-	data
-});
 
 const fetchForecastPending = () => ({
 	type: FETCH_FORECAST_PENDING
@@ -31,7 +24,7 @@ export const fetchForecast = term => {
 			if (term) {
 				data = await fetchSearchForecast(term);
 			} else {
-				data = await fetchLocalForecast(term);
+				data = await fetchLocalForecast();
 			}
 			dispatch(fetchForecastSuccess(data));
 		} catch (error) {
@@ -44,15 +37,9 @@ const INITIAL_STATE = { pending: false, data: null, error: null };
 
 const forecastReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
-		case INIT_FORECAST:
-			return { ...state, data: action.data };
 		case FETCH_FORECAST_PENDING:
 			return { ...state, pending: true };
 		case FETCH_FORECAST_SUCCESS:
-			window.localStorage.setItem(
-				"weather-forecast-data",
-				JSON.stringify(action.data)
-			);
 			return { ...state, pending: false, data: action.data };
 		case FETCH_FORECAST_ERROR:
 			return { ...state, pending: false, error: action.error };

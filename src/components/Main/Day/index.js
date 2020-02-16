@@ -11,7 +11,7 @@ import Time from "./Time";
 const Day = ({ data, activePeriod, pathname }) =>
 	data && (
 		<Container
-			initial={pathname === "/weather-forecast/day" ? "left" : "right"}
+			initial={pathname === "/weather-forecast" ? "left" : "right"}
 			animate="animate"
 			exit={pathname === "/weather-forecast/week" ? "right" : "left"}
 			variants={pageVariants}
