@@ -14,17 +14,17 @@ const Main = ({ headerHeight }) => {
 		<Container headerHeight={headerHeight}>
 			<AnimatePresence exitBeforeEnter>
 				<Switch location={location} key={location.pathname}>
-					<Route path="/" exact>
+					<Route path="/weather-forecast/" exact>
 						<Render>
 							<h1>Home Page</h1>
 						</Render>
 					</Route>
-					<Route path="/day">
+					<Route path="/weather-forecast/day">
 						<Render>
 							<Day pathname={location.pathname} />
 						</Render>
 					</Route>
-					<Route path="/week">
+					<Route path="/weather-forecast/week">
 						<Render>
 							<Week pathname={location.pathname} />
 						</Render>
